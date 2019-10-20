@@ -22,6 +22,7 @@ public class LeagueInvaders {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.addKeyListener(g);
 		
+		
 	}
 	void setup() {
 		
