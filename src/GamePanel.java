@@ -23,7 +23,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
 	Rocketship r = new Rocketship(250,700,50,50);
-	
+	ObjectManager o = new ObjectManager(r);
     @Override
 	public void paintComponent(Graphics g){
     	if(currentState == MENU){
@@ -35,7 +35,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     	}
 	}
     void updateMenuState() {  }
-    void updateGameState() {  }
+    void updateGameState() { 
+    	o.update();
+    }
     void updateEndState()  {  }
     void drawMenuState(Graphics g) { 
     g.setColor(Color.BLUE);
@@ -50,7 +52,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     void drawGameState(Graphics g) { 
     	g.setColor(Color.BLACK);
     	g.drawImage(image, 0,0,500,800,null);
-    	r.draw(g);
+    	o.draw(g);
     	
 
     }
