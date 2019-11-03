@@ -12,10 +12,10 @@ public class ObjectManager implements ActionListener{
 	
 	
 	ObjectManager(Rocketship r){
-		r = new Rocketship(250,700,50,50);
+		this.r = r;
 	}
 	void addProj(Projectile p) {
-		
+		proj.add(p);
 	}
 	void addAlien() {
 		al.add(new Alien(random.nextInt(LeagueInvaders.WIDTH),0,50,50));
@@ -58,7 +58,6 @@ public class ObjectManager implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		addAlien();
 	}
-
 }

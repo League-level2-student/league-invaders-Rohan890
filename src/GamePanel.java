@@ -19,6 +19,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     Font titleFont;
     Font menuFont;
 	Timer frameDraw;
+	Timer alienSpawn;
 	public static BufferedImage image;
 	public static boolean needImage = true;
 	public static boolean gotImage = false;	
@@ -53,6 +54,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     	g.setColor(Color.BLACK);
     	g.drawImage(image, 0,0,500,800,null);
     	o.draw(g);
+
     	
 
     }
@@ -76,6 +78,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         }
  
     }
+    void startGame() {
+    	  alienSpawn = new Timer(1000 , o);
+    	    alienSpawn.start();
+    }
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -86,7 +92,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}else if(currentState == END){
 		    updateEndState();
 		}          
-		System.out.println("action");
+		
 		repaint();
 	}
 	@Override
@@ -98,27 +104,34 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+			startGame();
 		    if (currentState == END) {
-		        currentState = MENU;
+		    	alienSpawn.stop();
+		        currentState = MENU;  
 		    } else {
 		        currentState++;
+		        alienSpawn.restart();
 		    }
 		}   
 		if (e.getKeyCode()==KeyEvent.VK_UP) {
-		    System.out.println("UP");
+
 		    r.up();
 		}
 		if (e.getKeyCode()==KeyEvent.VK_DOWN) {
-		    System.out.println("DOWN");
+	
 		    r.down();
 		}
 		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
-		    System.out.println("RIGHT");
+
 		    r.right();
 		}
 		if (e.getKeyCode()==KeyEvent.VK_LEFT) {
-		    System.out.println("LEFT");
+
 		    r.left();
+		}
+		if (e.getKeyCode()==KeyEvent.VK_SPACE) {
+			o.addProj(r.getProjectile());
+			System.out.println("space");
 		}
 	}
 	@Override
