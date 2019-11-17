@@ -31,6 +31,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     	    drawMenuState(g);
     	}else if(currentState == GAME){
     	    drawGameState(g);
+        	System.out.println(o.getScore()+ "");
+        	
+        	
     	}else if(currentState == END){
     	    drawEndState(g);
     	}
@@ -38,6 +41,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     void updateMenuState() {  }
     void updateGameState() { 
     	o.update();
+    	if(r.isActive == false) {
+    		currentState = END;
+    	}
     }
     void updateEndState()  {  }
     void drawMenuState(Graphics g) { 
@@ -54,9 +60,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     	g.setColor(Color.BLACK);
     	g.drawImage(image, 0,0,500,800,null);
     	o.draw(g);
-
-    	
-
+    	g.setColor(Color.WHITE);
+    	g.drawString("score = " + o.getScore(), 5,50);
     }
     void drawEndState(Graphics g)  { 
     	g.setColor(Color.RED);
@@ -103,7 +108,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+		if (e.getKeyCode()==KeyEvent.VK_ENTER ) {
 			startGame();
 		    if (currentState == END) {
 		    	alienSpawn.stop();
@@ -131,7 +136,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		if (e.getKeyCode()==KeyEvent.VK_SPACE) {
 			o.addProj(r.getProjectile());
-			System.out.println("space");
+
 		}
 	}
 	@Override
