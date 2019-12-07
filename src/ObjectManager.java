@@ -74,7 +74,8 @@ public class ObjectManager implements ActionListener {
 			if (r.collisionBox.intersects(al.get(i).collisionBox)) {
 				al.get(i).isActive = false;
 				r.isActive = false;
-
+				score = 0;
+				
 			}
 			for (int o = 0; o < proj.size(); o++) {
 				if (proj.get(o).collisionBox.intersects(al.get(i).collisionBox)) {

@@ -71,7 +71,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         g.drawString("GAME OVER", 120, 200);
         g.setFont(menuFont);
         g.drawString("Press ENTER to Restart", 150, 380);
-
+       
     }
     GamePanel(){
         titleFont = new Font("Arial", Font.PLAIN, 48);
@@ -112,6 +112,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			startGame();
 		    if (currentState == END) {
 		    	alienSpawn.stop();
+		    	if(r.isActive == false) {
+		    		Rocketship r = new Rocketship(250,700,50,50);
+		    		r.isActive = true;
+		    	}
 		        currentState = MENU;  
 		    } else {
 		        currentState++;
